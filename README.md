@@ -2,5 +2,5 @@
 
 ### Fecha de entrega: 16/06/2023 | Hora: 23:59
 
-* [ ] 1er Video -> tiempo: 3:08:50
+* [X] 1er Video -> tiempo: 3:08:50
 * [ ] 2do Video -> no empezado
