@@ -3,4 +3,4 @@
 ### Fecha de entrega: 16/06/2023 | Hora: 23:59
 
 * [X] 1er Video -> TERMINADO
-* [ ] 2do Video -> no empezado
+* [ ] 2do Video -> 34:15
