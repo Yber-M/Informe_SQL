@@ -132,3 +132,47 @@ where x.IdProducto=27
 group by YEAR(g.FechaSalida), MONTH(g.FechaSalida)
 order by Año, Mes
 go
+
+-- Escriba una consulta que muestre el total de unidades menesuales despachadas de cada grupo
+-- la consultas debe mostrar el nombre del producto
+-- unidades mensuales despachadas de cada producto
+select p.Nombre,
+	YEAR(g.FechaSalida) as Año,
+	MONTH(g.FechaSalida) as Mes,
+	sum(x.Cantidad) as "Total Unidades"
+from GUIA g inner join GUIA_DETALLE x on(g.IdGuia=x.IdGuia)
+			inner join PRODUCTO p on (x.IdProducto=p.IdProducto)
+group by p.Nombre, YEAR(g.FechaSalida), MONTH(g.FechaSalida)
+order by p.Nombre, Año, Mes
+go
+
+-- SUB CONSULTAS(
+-- Consulta devuelve el precio promedio de todos los productos
+select AVG(p.PrecioProveedor)
+from PRODUCTO p
+go
+
+-- Diferencia entre el precio promedio y el precio de cada producto
+select p.IdProducto, p.Nombre, p.PrecioProveedor,
+	   diferencia=p.PrecioProveedor - (select AVG(p.PrecioProveedor)
+from PRODUCTO p)
+from PRODUCTO p
+
+-- Escriba una consulta que entregue una lista de los productos que
+-- despacharon en la fecha que se despacho la última salida del almacen
+-- Tenga en cuenta que en dicha fecha se puede haber registrado más de un salida
+
+-- Fehca de la última salida
+select max(g.FechaSalida) from guia g
+-- Productos que se despacharon en la fehca de la consulta anterior
+select distinct x.IdProducto, 
+		p.Nombre,
+		CONVERT(char(10), g.FechaSalida, 103) as Fecha
+from GUIA g inner join GUIA_DETALLE x on(g.IdGuia=x.IdGuia)
+			inner join PRODUCTO p on (x.IdProducto=p.IdProducto)
+where CONVERT(char(10), g.FechaSalida, 103)=(
+select CONVERT(char(10), max(g.FechaSalida), 103) from guia g)
+go
+
+select CONVERT(char(10), MAX(g.FechaSalida),103) from guia g
+
