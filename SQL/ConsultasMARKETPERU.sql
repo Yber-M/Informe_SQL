@@ -1,3 +1,4 @@
+-- Usar la base de datos correspondiente
 use MARKETPERU
 go
 
@@ -6,7 +7,7 @@ go
 select AVG(p.PrecioProveedor) as "precio promedio"	
 from PRODUCTO p
 
--- precio unitario promedio de todos los productos que corresponda a la categoría 2
+-- precio unitario promedio de todos los productos que corresponda a la categorï¿½a 2
 select AVG(p.PrecioProveedor) as "precio promedio categoria 2"
 from PRODUCTO p
 where p.IdCategoria=4
@@ -57,14 +58,14 @@ where g.IdProducto=7
 go
 
 -- Clausula group by
--- cantidad de productos registrados para cada categoría
+-- cantidad de productos registrados para cada categorï¿½a
 select p.IdCategoria, 
 	count(p.IdProducto) as "cant productos"
 from PRODUCTO p
 group by p.IdCategoria
 go
 
--- cantidad de productos por proveedor para la categoría de 2 y 4
+-- cantidad de productos por proveedor para la categorï¿½a de 2 y 4
 select 
 	p.IdCategoria as categoria,
 	p.IdProveedor as proveedor,
@@ -102,7 +103,7 @@ go
 -------------------------------------------------------------------------
 
 -- Escriba una consulta que muestre  los datos de la cabecera de la 
--- guía de remision número 27 y además su monto total
+-- guï¿½a de remision nï¿½mero 27 y ademï¿½s su monto total
 
 select g.IdGuia, g.IdLocal, g.FechaSalida,
 		monto=sum(x.Cantidad * x.PrecioVenta)
@@ -124,26 +125,26 @@ go
 -- Escriba una consulta que muestre el total de unidades despachadas por mes
 -- del producto 27
 select 
-	YEAR(g.FechaSalida) as Año,
+	YEAR(g.FechaSalida) as Aï¿½o,
 	MONTH(g.FechaSalida) as Mes,
 	sum(x.Cantidad) as "Total Unidades"
 from GUIA g inner join GUIA_DETALLE x on(g.IdGuia=x.IdGuia)
 where x.IdProducto=27
 group by YEAR(g.FechaSalida), MONTH(g.FechaSalida)
-order by Año, Mes
+order by Aï¿½o, Mes
 go
 
 -- Escriba una consulta que muestre el total de unidades menesuales despachadas de cada grupo
 -- la consultas debe mostrar el nombre del producto
 -- unidades mensuales despachadas de cada producto
 select p.Nombre,
-	YEAR(g.FechaSalida) as Año,
+	YEAR(g.FechaSalida) as Aï¿½o,
 	MONTH(g.FechaSalida) as Mes,
 	sum(x.Cantidad) as "Total Unidades"
 from GUIA g inner join GUIA_DETALLE x on(g.IdGuia=x.IdGuia)
 			inner join PRODUCTO p on (x.IdProducto=p.IdProducto)
 group by p.Nombre, YEAR(g.FechaSalida), MONTH(g.FechaSalida)
-order by p.Nombre, Año, Mes
+order by p.Nombre, Aï¿½o, Mes
 go
 
 -- SUB CONSULTAS(
@@ -159,10 +160,10 @@ from PRODUCTO p)
 from PRODUCTO p
 
 -- Escriba una consulta que entregue una lista de los productos que
--- despacharon en la fecha que se despacho la última salida del almacen
--- Tenga en cuenta que en dicha fecha se puede haber registrado más de un salida
+-- despacharon en la fecha que se despacho la ï¿½ltima salida del almacen
+-- Tenga en cuenta que en dicha fecha se puede haber registrado mï¿½s de un salida
 
--- Fehca de la última salida
+-- Fehca de la ï¿½ltima salida
 select max(g.FechaSalida) from guia g
 -- Productos que se despacharon en la fehca de la consulta anterior
 select distinct x.IdProducto, 
