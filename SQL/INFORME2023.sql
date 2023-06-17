@@ -51,3 +51,28 @@ insert into USUARIOUCV(cod_UCVuser, nom_UCVuser, status_UCVuser)
 		from USUARIO
 		where status_user = '1'
 go
+
+select * from USUARIOUCV
+
+--Eliminar registros
+DELETE FROM USUARIOUCV
+
+--Eliminar registros especificos WHERE
+delete from USUARIO where cod_user=3
+select * from USUARIO
+
+--ACTUALIZAR EL ESTADO DEL USUARIO
+UPDATE USUARIO
+	set status_user ='0' --inactivo
+	WHERE cod_user=5
+select * from usuario
+
+UPDATE USUARIOUCV
+	set status_UCVuser='0'
+select * from USUARIOUCV
+
+UPDATE USUARIO
+	set status_user = '0' --inactivo
+	WHERE cod_user = 9
+select * from usuario where status_user='1'-- ACTIVOS
+select * from usuario where status_user='0'-- INACTIVOS

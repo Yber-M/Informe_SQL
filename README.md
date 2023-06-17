@@ -3,4 +3,6 @@
 ### Fecha de entrega: 16/06/2023 | Hora: 23:59
 
 * ~~ 1er Video -> TERMINADO~~
-* [ ] 2do Video -> 34:15
+* ~~  2do Video -> TERMINADO ~~ 
+
+# -- PROYECTO/INFORME TERMINADO y ENVIADO -- 
